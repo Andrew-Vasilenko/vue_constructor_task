@@ -6,6 +6,9 @@
 
 <script>
 export default ({
-    props: ['button']
+    props: ['button'],
+    methods: {
+
+    }
 })
 </script>

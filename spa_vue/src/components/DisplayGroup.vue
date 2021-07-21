@@ -7,11 +7,6 @@
             v-if = "element.type === 'Button'"
             v-bind:button = "element"
         />
-        <Group
-            v-if = "element.type === 'Group'"
-            v-bind:groupName = "element.title"
-            v-bind:groupElementsArray = "element.childs"
-        />
         <Label
             v-if = "element.type === 'Label'"
             v-bind:label = "element"
@@ -27,18 +22,13 @@
 import Button from '@/components/FormTypes/Button'
 import Label from '@/components/FormTypes/Label'
 import Input from '@/components/FormTypes/Input'
-import Group from '@/components/FormTypes/Group'
 
 export default ({
     props: ['element'],
     components: {
         Button:Button,
-        Group:Group,
         Label:Label,
         Input:Input
     }
 })
 </script>
-
-
-
