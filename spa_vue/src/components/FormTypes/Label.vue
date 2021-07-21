@@ -1,5 +1,9 @@
 <template>
-    <div>
-        <h3>This is a Label component</h3>
-    </div>
+    <label v-bind:name = "label.name">{{ label.title }}</label>
 </template>
+
+<script>
+export default {
+    props: ['label']
+}
+</script>

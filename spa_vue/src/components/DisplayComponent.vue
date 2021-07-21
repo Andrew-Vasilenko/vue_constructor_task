@@ -1,12 +1,24 @@
 <template>
     <div>
-        <br>
-        <!-- {{ element }} -->
-        <br>
-        <Button v-if = "element.type === 'Button'"/>
-        <Group v-if = "element.type === 'Group'"/>
-        <Label v-if = "element.type === 'Label'"/>
-        <Input v-if = "element.type === 'Input'"/>
+        <!-- <br>
+        {{ element }}
+        <br> -->
+        <Button
+            v-if = "element.type === 'Button'"
+            v-bind:button = "element"
+        />
+        <Group
+            v-if = "element.type === 'Group'"
+            v-bind:customGroup = "element"
+        />
+        <Label
+            v-if = "element.type === 'Label'"
+            v-bind:label = "element"
+        />
+        <Input
+            v-if = "element.type === 'Input'"
+            v-bind:input = "element"
+        />
     </div>
 </template>
 

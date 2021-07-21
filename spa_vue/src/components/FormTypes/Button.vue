@@ -1,3 +1,11 @@
 <template>
-    <button></button>
+    <button
+        v-bind:name = "button.name"
+    >{{ button.title }}</button>
 </template>
+
+<script>
+export default ({
+    props: ['button']
+})
+</script>
