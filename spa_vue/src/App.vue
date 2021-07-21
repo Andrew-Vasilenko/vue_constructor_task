@@ -1,18 +1,32 @@
 <template>
-
+  <form>
+    <DisplayComponent
+      v-for = "element in elementsArray"
+      v-bind:element = "element"
+      v-bind:key = "element.type"
+    />
+  </form>
 </template>
 
 <script>
+import DisplayComponent from '@/components/DisplayComponent'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      elementsArray: []
+    }
+  },
   mounted() {
     fetch("http://localhost:3000/getData")
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => {
+        this.elementsArray = json
+      })
   },
   components: {
-    
+    DisplayComponent:DisplayComponent
   }
 }
 </script>
