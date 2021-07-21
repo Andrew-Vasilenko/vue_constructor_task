@@ -6,6 +6,8 @@
         <Button
             v-if = "element.type === 'Button'"
             v-bind:button = "element"
+
+            v-on:buttonClick = "buttonClick"
         />
         <Label
             v-if = "element.type === 'Label'"
@@ -29,6 +31,11 @@ export default ({
         Button:Button,
         Label:Label,
         Input:Input
+    },
+    methods: {
+        buttonClick(buttonAction) {
+            this.$emit('buttonClick', buttonAction)
+        }
     }
 })
 </script>

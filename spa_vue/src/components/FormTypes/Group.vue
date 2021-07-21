@@ -7,6 +7,8 @@
                 v-for = "element in groupElementsArray"
                 v-bind:element = "element"
                 v-bind:key = "element.type"
+
+                v-on:buttonClick = "buttonClick"
             />
         </div>
         
@@ -32,6 +34,9 @@ export default {
     methods: {
         toggleGroupVisibility() {
             this.isVisible = !this.isVisible
+        },
+        buttonClick(buttonAction) {
+            this.$emit('buttonClick', buttonAction)
         }
     }
 }

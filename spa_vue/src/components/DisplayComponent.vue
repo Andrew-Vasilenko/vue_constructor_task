@@ -1,16 +1,17 @@
 <template>
     <div>
-        <!-- <br>
-        {{ element }}
-        <br> -->
         <Button
             v-if = "element.type === 'Button'"
             v-bind:button = "element"
+
+            v-on:buttonClick = "buttonClick"
         />
         <Group
             v-if = "element.type === 'Group'"
             v-bind:groupName = "element.title"
             v-bind:groupElementsArray = "element.childs"
+
+            v-on:buttonClick = "buttonClick"
         />
         <Label
             v-if = "element.type === 'Label'"
@@ -36,6 +37,11 @@ export default ({
         Group:Group,
         Label:Label,
         Input:Input
+    },
+    methods: {
+        buttonClick(buttonAction) {
+            this.$emit('buttonClick', buttonAction)
+        }
     }
 })
 </script>
