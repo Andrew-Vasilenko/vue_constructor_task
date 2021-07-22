@@ -11,7 +11,7 @@ export default ({
     props: ['button'],
     methods: {
         Click(event) {
-            let buttonAction = event.target.getAttribute('action');
+            let buttonAction = event.target.getAttribute('action')
             this.$emit('buttonClick', buttonAction)
         }
     }

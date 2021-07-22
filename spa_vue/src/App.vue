@@ -36,16 +36,12 @@ export default {
         let labels = document.getElementsByTagName('LABEL')
         let inputs = document.getElementsByTagName('INPUT')
 
-        let responseObj = {
-          labels: [],
-          inputs: []
-        }
+        let responseObj = {}
 
         for (let i = 0; i < labels.length; i++){
-          let label = labels[i].textContent
+          let label = labels[i].getAttribute('name')
           let input = inputs[i].value
-          responseObj.labels.push(label)
-          responseObj.inputs.push(input)
+          responseObj[label] = input
         }
 
         switch(buttonAction) {
