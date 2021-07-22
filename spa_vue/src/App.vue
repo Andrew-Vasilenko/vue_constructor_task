@@ -35,18 +35,18 @@ export default {
         // console.log(buttonAction)
         let labels = document.getElementsByTagName('LABEL')
         let inputs = document.getElementsByTagName('INPUT')
-  console.log(labels)
-        let responseObj = {}
 
-        for (let i = 0; i < labels.length; i++){
-          let label = labels[i].name
-          let input = inputs[i].value
-
-          responseObj[label] = input
-          
+        let responseObj = {
+          labels: [],
+          inputs: []
         }
 
-        // console.log("labels.length ", labels.length)
+        for (let i = 0; i < labels.length; i++){
+          let label = labels[i].textContent
+          let input = inputs[i].value
+          responseObj.labels.push(label)
+          responseObj.inputs.push(input)
+        }
 
         switch(buttonAction) {
           case 'alert':
