@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     buttonClick(buttonAction) {
-        // console.log(buttonAction)
         let labels = document.getElementsByTagName('LABEL')
         let inputs = document.getElementsByTagName('INPUT')
 
