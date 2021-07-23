@@ -13,46 +13,42 @@
 <script>
 import DisplayComponent from '@/components/DisplayComponent'
 
+// маппим сущности из сторы
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'App',
-  data() {
-    return {
-      elementsArray: []
-    }
-  },
-  mounted() {
-    fetch("http://localhost:3000/getData")
-      .then(response => response.json())
-      .then(json => {
-        this.elementsArray = json
-      })
+  computed: mapGetters(['elementsArray']),
+  methods: mapActions(['fetchElements']),
+  async mounted() {
+    this.fetchElements();
   },
   components: {
     DisplayComponent:DisplayComponent
   },
-  methods: {
-    buttonClick(buttonAction) {
-        let labels = document.getElementsByTagName('LABEL')
-        let inputs = document.getElementsByTagName('INPUT')
+  // methods: {
+  //   buttonClick(buttonAction) {
+  //       let labels = document.getElementsByTagName('LABEL')
+  //       let inputs = document.getElementsByTagName('INPUT')
 
-        let responseObj = {}
+  //       let responseObj = {}
 
-        for (let i = 0; i < labels.length; i++){
-          let label = labels[i].getAttribute('name')
-          let input = inputs[i].value
-          responseObj[label] = input
-        }
+  //       for (let i = 0; i < labels.length; i++){
+  //         let label = labels[i].getAttribute('name')
+  //         let input = inputs[i].value
+  //         responseObj[label] = input
+  //       }
 
-        switch(buttonAction) {
-          case 'alert':
-            alert(JSON.stringify(responseObj))
-            break
-          case 'console.log':
-            console.log(JSON.stringify(responseObj))
-            break
-        }
-    }
-  }
+  //       switch(buttonAction) {
+  //         case 'alert':
+  //           alert(JSON.stringify(responseObj))
+  //           break
+  //         case 'console.log':
+  //           console.log(JSON.stringify(responseObj))
+  //           break
+  //       }
+  //   }
+  // },
 }
 </script>
 
