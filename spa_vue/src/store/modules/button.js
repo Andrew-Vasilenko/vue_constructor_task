@@ -12,18 +12,30 @@ export default {
                 responseObj[label] = input
             }
 
+            ctx.commit('updatePageData', responseObj)
+
             let buttonAction = event.target.getAttribute('action')
             switch(buttonAction) {
                 case 'alert':
-                    alert(JSON.stringify(responseObj))
+                    alert(JSON.stringify(ctx.state.pageData))
                     break
                 case 'console.log':
-                    console.log(JSON.stringify(responseObj))
+                    console.log(JSON.stringify(ctx.state.pageData))
                     break
             }
         }
     },
-    mutations: {},
-    state: {},
-    getters: {}
+    mutations: {
+        updatePageData(state, newPageData){
+            state.pageData = newPageData
+        }
+    },
+    state: {
+        pageData: {}
+    },
+    getters: {
+        pageData(state){
+            return state.pageData
+        }
+    }
 }
