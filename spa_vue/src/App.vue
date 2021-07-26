@@ -4,8 +4,6 @@
       v-for = "element in elementsArray"
       v-bind:element = "element"
       v-bind:key = "element.type"
-
-      v-on:buttonClick = "buttonClick"
     />
   </form>
 </template>
@@ -19,7 +17,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'App',
   computed: mapGetters(['elementsArray']),
-  methods: mapActions(['fetchElements', 'buttonClick']),
+  methods: mapActions(['fetchElements']),
   async mounted() {
     this.fetchElements();
   },

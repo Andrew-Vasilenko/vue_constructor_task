@@ -3,15 +3,13 @@
         <Button
             v-if = "element.type === 'Button'"
             v-bind:button = "element"
-
-            v-on:buttonClick = "buttonClick"
         />
 
         <div class="groupDiv" v-if = "element.type === 'Group'">
             <h3 v-if = "element.type === 'Group'"
-                v-on:click = "toggleGroupVisibility"
+                v-on:click = "toggleVisibility"
             >{{ element.title }}</h3>
-            <div v-if="isVisible">
+            <div v-if = "visibilityStatus">
                 <DisplayComponent 
                     v-for = "child in element.childs"
                     v-bind:element = "child"
@@ -20,8 +18,6 @@
                     v-bind:groupTitle = "groupTitle"
                     v-bind:groupName = "groupName"
                     v-bind:groupChilds = "groupChilds"
-
-                    v-on:buttonClick = "buttonClick"            
                 />   
             </div>
         </div>        
@@ -42,12 +38,12 @@ import Button from '@/components/FormTypes/Button'
 import Label from '@/components/FormTypes/Label'
 import Input from '@/components/FormTypes/Input'
 
+// маппим сущности из сторы
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-    data () {
-        return {
-            isVisible: false
-        }
-    },
+    computed: mapGetters(['visibilityStatus']),
+    methods: mapActions(['toggleVisibility']),
     props: [
         'element',
         'groupTitle',
@@ -58,14 +54,6 @@ export default {
         Button:Button,
         Label:Label,
         Input:Input
-    },
-    methods: {
-        buttonClick(buttonAction) {
-            this.$emit('buttonClick', buttonAction)
-        },
-        toggleGroupVisibility() {
-            this.isVisible = !this.isVisible
-        }
     }
 }
 </script>
