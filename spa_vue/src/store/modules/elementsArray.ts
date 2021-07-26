@@ -1,6 +1,6 @@
 export default {
     actions: {
-        async fetchElements(ctx) {
+        async fetchElements(ctx:any): Promise<void> {
             let res = await fetch("http://localhost:3000/getData")
             let elementsArray = await res.json()
             
@@ -8,7 +8,7 @@ export default {
         }
     },
     mutations: {
-        updateElementsArray(state, elementsArray){
+        updateElementsArray(state:any, elementsArray: any): void {
             state.elementsArray = elementsArray
         }
     },
@@ -16,7 +16,7 @@ export default {
         elementsArray: []
     },
     getters: {
-        elementsArray(state){
+        elementsArray(state:any): Object[] {
             return state.elementsArray
         }
     }
