@@ -1,20 +1,19 @@
 <template>
-    <button
+  <button
         v-bind:action = "button.action"
         v-on:click = "buttonClick"
         v-bind:name = "button.name"
     >{{ button.title }}</button>
 </template>
 
-<script>
-// маппим сущности из сторы
-import { mapActions } from 'vuex'
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import { mapActions } from 'vuex';
 
-
-export default ({
-    methods: mapActions(['buttonClick']),
-    props: ['button']
+@Options({
+  name: 'Button',
+  methods: mapActions(['buttonClick']),
+  props: ['button']
 })
-/* на кнопку просто вешается экшн,
-при нажатии на кнопку этот экшн эмитается */
+export default class Button extends Vue {}
 </script>

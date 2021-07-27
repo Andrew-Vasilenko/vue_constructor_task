@@ -8,13 +8,12 @@
   </form>
 </template>
 
-<script>
-import DisplayComponent from '@/components/DisplayComponent'
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import DisplayComponent from '@/components/DisplayComponent.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-// маппим сущности из сторы
-import { mapGetters, mapActions } from 'vuex'
-
-export default {
+@Options({
   name: 'App',
   computed: mapGetters(['elementsArray']),
   methods: mapActions(['fetchElements']),
@@ -22,9 +21,10 @@ export default {
     this.fetchElements();
   },
   components: {
-    DisplayComponent:DisplayComponent
-  }
-}
+    DisplayComponent,
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style>

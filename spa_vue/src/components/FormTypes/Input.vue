@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
         <input type="text"
             v-bind:value = "input.title"
             v-bind:name = "input.name"
@@ -7,8 +7,12 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: ['input']
-}
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+
+@Options({
+  name: 'Input',
+  props: ['input']
+})
+export default class Input extends Vue {}
 </script>

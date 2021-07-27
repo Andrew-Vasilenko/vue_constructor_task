@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
         <Button
             v-if = "element.type === 'Button'"
             v-bind:button = "element"
@@ -33,29 +33,30 @@
     </div>
 </template>
 
-<script>
-import Button from '@/components/FormTypes/Button'
-import Label from '@/components/FormTypes/Label'
-import Input from '@/components/FormTypes/Input'
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import Button from '@/components/FormTypes/Button.vue';
+import Label from '@/components/FormTypes/Label.vue';
+import Input from '@/components/FormTypes/Input.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-// маппим сущности из сторы
-import { mapGetters, mapActions } from 'vuex'
-
-export default {
-    computed: mapGetters(['visibilityStatus']),
-    methods: mapActions(['toggleVisibility']),
-    props: [
+@Options({
+  name: 'DisplayComponent',
+  computed: mapGetters(['visibilityStatus']),
+  methods: mapActions(['toggleVisibility']),
+  components: {
+    Button,
+    Label,
+    Input
+  },
+  props: [
         'element',
         'groupTitle',
         'groupName',
         'groupChilds'
     ],
-    components: {
-        Button:Button,
-        Label:Label,
-        Input:Input
-    }
-}
+})
+export default class DisplayComponent extends Vue {}
 </script>
 
 <style scoped>
@@ -63,4 +64,3 @@ export default {
         border: 1px solid black;
     }
 </style>
-
