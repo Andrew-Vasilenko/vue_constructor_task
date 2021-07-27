@@ -9,10 +9,12 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 @Options({
-  name: 'Input',
-  props: ['input']
+  name: 'Input'
 })
-export default class Input extends Vue {}
+export default class Input extends Vue {
+    @Prop({required: true, type: Object}) input: Object|undefined
+}
 </script>

@@ -4,10 +4,12 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 @Options({
-  name: 'Label',
-  props: ['label']
+  name: 'Label'
 })
-export default class Label extends Vue {}
+export default class Label extends Vue {
+    @Prop({required: true, type: Object}) label: Object|undefined
+}
 </script>

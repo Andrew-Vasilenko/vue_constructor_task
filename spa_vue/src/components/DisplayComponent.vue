@@ -35,6 +35,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 import Button from '@/components/FormTypes/Button.vue';
 import Label from '@/components/FormTypes/Label.vue';
 import Input from '@/components/FormTypes/Input.vue';
@@ -48,15 +49,14 @@ import { mapGetters, mapActions } from 'vuex';
     Button,
     Label,
     Input
-  },
-  props: [
-        'element',
-        'groupTitle',
-        'groupName',
-        'groupChilds'
-    ],
+  }
 })
-export default class DisplayComponent extends Vue {}
+export default class DisplayComponent extends Vue {
+    @Prop({required: true, type: Object}) element: Object|undefined
+    @Prop({required: false, type: String, default: 'groupTitle was now specified'}) groupTitle: string|undefined
+    @Prop({required: false, type: String, default: 'groupName was now specified'}) groupName: string|undefined
+    @Prop({required: false, type: Array}) groupChilds: Object[]|undefined
+}
 </script>
 
 <style scoped>
