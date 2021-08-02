@@ -1,20 +1,24 @@
+interface stateObject {
+    pageData: Object
+}
+
 export default {
     actions: {
-        async buttonClick(ctx:any, event:any): Promise<void> {            
-            let labels:any = document.getElementsByTagName('LABEL')
-            let inputs:any = document.getElementsByTagName('INPUT')
+        async buttonClick(ctx:Object|any, event:Object|any): Promise<void> {            
+            const labels:HTMLCollectionOf<Element> = document.getElementsByTagName('LABEL')
+            const inputs:HTMLCollectionOf<Element>|any = document.getElementsByTagName('INPUT')
 
-            let responseObj:any = {}
+            const responseObj:Object|any = {}
 
             for (let i:number = 0; i < labels.length; i++){
-                let label:any = labels[i].getAttribute('name')
-                let input:any = inputs[i].value
+                const label:string|any = labels[i].getAttribute('name')
+                const input:string|any = inputs[i].value
                 responseObj[label] = input
             }
 
             ctx.commit('updatePageData', responseObj)
 
-            let buttonAction:any = event.target.getAttribute('action')
+            const buttonAction:string = event.target.getAttribute('action')
             switch(buttonAction) {
                 case 'alert':
                     alert(JSON.stringify(ctx.state.pageData))
@@ -26,7 +30,7 @@ export default {
         }
     },
     mutations: {
-        updatePageData(state:any, newPageData:Object): void{
+        updatePageData(state:stateObject, newPageData:Object): void{
             state.pageData = newPageData
         }
     },
@@ -34,7 +38,7 @@ export default {
         pageData: {}
     },
     getters: {
-        pageData(state:any): Object{
+        pageData(state:stateObject): Object{
             return state.pageData
         }
     }

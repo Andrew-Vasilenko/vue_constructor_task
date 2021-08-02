@@ -1,12 +1,16 @@
+interface stateObject {
+    visibilityStatus: boolean
+}
+
 export default {
     actions: {
-        async toggleVisibility(ctx:any): Promise<void> {
-            let newVisibilityStatus:boolean = !ctx.state.visibilityStatus
+        async toggleVisibility(ctx:Object|any): Promise<void> {
+            const newVisibilityStatus:boolean = !ctx.state.visibilityStatus
             ctx.commit('updateVisibilityStatus', newVisibilityStatus)
         }
     },
     mutations: {
-        updateVisibilityStatus(state:any, newVisibilityStatus:boolean): void{
+        updateVisibilityStatus(state:stateObject, newVisibilityStatus:boolean): void{
             state.visibilityStatus = newVisibilityStatus
         }
     },
@@ -14,7 +18,7 @@ export default {
         visibilityStatus: false
     },
     getters: {
-        visibilityStatus(state:any): boolean{
+        visibilityStatus(state:stateObject): boolean{
             return state.visibilityStatus
         }
     }

@@ -1,22 +1,26 @@
+interface stateObject {
+    elementsArray: Object[]
+}
+
 export default {
     actions: {
-        async fetchElements(ctx:any): Promise<void> {
-            let res = await fetch("http://localhost:3000/getData")
-            let elementsArray = await res.json()
+        async fetchElements(ctx:Object|any): Promise<void> {
+            const res = await fetch("http://localhost:3000/getData")
+            const elementsArray = await res.json()
             
             ctx.commit('updateElementsArray', elementsArray)
         }
     },
     mutations: {
-        updateElementsArray(state:any, elementsArray: any): void {
-            state.elementsArray = elementsArray
+        updateElementsArray(state:stateObject, newElementsArray: Object[]): void {
+            state.elementsArray = newElementsArray
         }
     },
     state: {
         elementsArray: []
     },
     getters: {
-        elementsArray(state:any): Object[] {
+        elementsArray(state:stateObject): Object[] {
             return state.elementsArray
         }
     }
