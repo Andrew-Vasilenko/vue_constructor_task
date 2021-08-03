@@ -5,10 +5,20 @@ interface stateObject {
 export default {
     actions: {
         async fetchElements(ctx:Object|any): Promise<void> {
-            const res = await fetch("http://localhost:3000/getData")
-            const elementsArray = await res.json()
-            
-            ctx.commit('updateElementsArray', elementsArray)
+
+            let ws = new WebSocket("ws://localhost:3000");
+
+            ws.onopen = function(event) {
+                console.log("WS connection established")
+                ws.send("i_need_data");
+            }
+
+            ws.onmessage = function(event) {
+                const elementsArray = JSON.parse(event.data) 
+                ctx.commit('updateElementsArray', elementsArray)
+                ws.close(1000, "you've done your job")
+                console.log("WS connection closed")
+            }
         }
     },
     mutations: {
