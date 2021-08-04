@@ -11,8 +11,7 @@
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-property-decorator": "^9.1.2",
-    "vuex": "^4.0.0-alpha.1",
-    "websocket": "^1.0.34"
+    "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

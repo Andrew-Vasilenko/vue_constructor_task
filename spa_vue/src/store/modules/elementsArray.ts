@@ -6,19 +6,17 @@ export default {
     actions: {
         async fetchElements(ctx:Object|any): Promise<void> {
 
-            let ws = new WebSocket("ws://localhost:3000");
-
-            ws.onopen = function(event) {
-                console.log("WS connection established")
-                ws.send("i_need_data");
+            const eventSource = new EventSource('http://localhost:3000/getData')
+            eventSource.onopen = function(e) {
+                console.log("Connection to the server established")
             }
-
-            ws.onmessage = function(event) {
-                const elementsArray = JSON.parse(event.data) 
+            eventSource.addEventListener('elementsArray', function(e:any) {
+                const elementsArray = JSON.parse(e.data)
+                console.log("Data received")
                 ctx.commit('updateElementsArray', elementsArray)
-                ws.close(1000, "you've done your job")
-                console.log("WS connection closed")
-            }
+                eventSource.close()
+                console.log("Connection with server dropped")
+            })
         }
     },
     mutations: {
@@ -35,3 +33,17 @@ export default {
         }
     }
 }
+
+// let ws = new WebSocket("ws://localhost:3000");
+
+//             ws.onopen = function(event) {
+//                 console.log("WS connection established")
+//                 ws.send("i_need_data");
+//             }
+
+//             ws.onmessage = function(event) {
+//                 const elementsArray = JSON.parse(event.data) 
+//                 ctx.commit('updateElementsArray', elementsArray)
+//                 ws.close(1000, "you've done your job")
+//                 console.log("WS connection closed")
+//             }
